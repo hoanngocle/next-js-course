@@ -1,17 +1,15 @@
-import React from "react";
-import styles from "./styles.module.css"
+import React from 'react';
+import styles from './styles.module.css';
+import { Suspense } from 'react';
+import Loading from './loading';
 
-export default function RootLayout({
-    children,
-  }: {
-    children: React.ReactNode
-  }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
             <nav>About NavBar</nav>
-            <main className={styles.main}>
-                {children}
-            </main>
+            <Suspense fallback={<Loading />}>
+                <main className={styles.main}>{children}</main>
+            </Suspense>
         </>
     );
 }
